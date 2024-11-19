@@ -7,7 +7,8 @@ export default {
   theme: {
     extend: {
       boxShadow: {
-        'inner-xl': 'inset 0px 0px 40px 0 rgba(0, 0, 0, 1.00)'
+        'inner-xl': 'inset 0px 0px 40px 0 rgba(0, 0, 0, 1.00)',
+        '3xl': '0px 0px 40px 0 rgba(0, 0, 0, 1.00)'
       },
       dropShadow: {
         'normal': '0 10px 20px rgba(0, 0, 0, 0.60)',
@@ -16,8 +17,11 @@ export default {
         'green-sm': '1px 2px 0px rgba(0, 100, 0, 1.00)',
         'green-md': '1.5px 3px 0px rgba(0, 100, 0, 1.00)',
       },
-      fontFamily:{
+      fontFamily: {
         space: ["Space Mono", "sans-serif"]
+      },
+      fontSize: {
+        
       },
       backgroundImage: {
 
