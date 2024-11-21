@@ -13,6 +13,8 @@ export default {
       dropShadow: {
         'normal': '0 10px 20px rgba(0, 0, 0, 0.60)',
         '3xl': '0 35px 35px rgba(0, 0, 0, 0.60)',
+        'green-glow': '0px 0px 8px rgba(0, 100, 0, 1.00)',
+        'green-glow-lg': '0px 0px 20px rgba(0, 100, 0, 1.00)',
         'green-lg': '2px 4px 0px rgba(0, 100, 0, 1.00)',
         'green-sm': '1px 2px 0px rgba(0, 100, 0, 1.00)',
         'green-md': '1.5px 3px 0px rgba(0, 100, 0, 1.00)',

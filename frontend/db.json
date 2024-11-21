@@ -49,7 +49,32 @@
       "image": "https://images.credly.com/images/00634f82-b07f-4bbd-a6bb-53de397fc3a6/image.png"
     }
   ],
-  "": [
-
+  "education": [
+    {
+      "id": "1",
+      "name": "The College of New Jersey",
+      "educationLevel": "Bachelors",
+      "school": "Science",
+      "major": "Computer Science",
+      "specialization": "Data Science",
+      "gpa": "3.961",
+      "startDate": "September 2023",
+      "endDate": "May 2027",
+      "currentlyAttending": true
+    }
+  ],
+  "projects": [
+    {
+      "id": "1",
+      "name": "Packt BOTD",
+      "shortDescription": "Serverless Notification Application for Packt's Book of the Day using AWS Resources and Python.",
+      "description": "Packt Book of the Day is a serverless notification application that notifies users via email of Packt's featured free eBooks, which can be found here: https://www.packtpub.com/free-learning/. The featured free eBook that Packt offers changes every 24 hours. At a high level, PacktBOTD uses AWS serverless resources to every 24 hours, identify the name of the book and then email users of the new featured book.",
+      "toolsUsed": ["Python", "Shell", "boto3", "AWS"],
+      "link": "https://github.com/AidanS39/PacktBOTD",
+      "image": "https://github.com/AidanS39/PacktBOTD/raw/main/PacktBOTD_ArchitectureDrawing.svg?raw=true",
+      "started": true,
+      "completed": false,
+      "comments": ["blah blah blah, first comment", "second comment hahaha"]
+    }
   ]
 }

@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import introductionService from './services/introduction'
 import experiencesServices from './services/experiences'
 import certificationsServices from './services/certifications'
+import educationServices from './services/education'
+import projectsServices from './services/projects'
 
 const Subtitle = ({ title }) => {
   return (
@@ -17,10 +19,9 @@ const Header = ({ title }) => {
 
 const SubHeader = ({ title }) => {
   return (
-    <h2 className={`antialiased font-space py-1 text-white text-base`}>{title}</h2>
+    <h2 className={`antialiased font-space text-white tracking-tighter text-lg`}>{title}</h2>
   )
 }
-
 
 const Paragraph = ({ text, width }) => {
   return (
@@ -35,6 +36,12 @@ const HeaderParagraph = ({ title, text }) => {
       <Subtitle title={title} />
       <Paragraph text={text} />
     </div>
+  )
+}
+
+const LinkHeader = ({ title, link }) => {
+  return (
+    <a href={link} className='hover:drop-shadow-green-md' ><Header title={title} /></a>
   )
 }
 
@@ -68,11 +75,40 @@ const Experiences = ({ title, experiences }) => {
   )
 }
 
+const School = ({ school }) => {
+  
+  let endDate = school.endDate
+  if (school.currentlyAttending) {
+    endDate = `Expected ${school.endDate}`
+  }
+  
+  return (
+    <div>
+      <Header title={school.name} />
+      <SubHeader title={`${school.educationLevel} of ${school.school} in ${school.major}`} />
+      {school.specialization === "" ? <></> : <Paragraph text={`Specialization in ${school.specialization}`} /> }
+      <Paragraph text={`${school.startDate} - ${endDate}`} />
+      <Paragraph text={`Cumulative GPA: ${school.gpa}`} />
+    </div>
+  )
+}
+
+const Education = ({ title, education }) => {
+  return (
+    <div>
+      <Subtitle title={title} />
+      {education.map(school =>
+        <School key={school.id} school={school} />
+      )}
+    </div>
+  )
+}
+
 const Certification = ({ certification }) => {
   return (
     <div className='flex py-2 items-center'>
       <div>
-      <a href={certification.link}><img src={certification.image} href={certification.link} className='px-2 cursor-pointer h-[168px]' /></a>
+        <a href={certification.link}><img src={certification.image} href={certification.link} className='pr-2 cursor-pointer h-[168px] min-w-[184px]' /></a>
       </div>
       <div>
         <Header title={certification.name} />
@@ -89,6 +125,43 @@ const Certifications = ({ title, certifications }) => {
       <Subtitle title={title} />
       {certifications.map(certification => 
         <Certification key={certification.id} certification={certification} />
+      )}
+    </div>
+  )
+}
+
+const Pill = ({ text }) => {
+  return (
+    <div className='inline font-space text-white text-xs py-1 px-2 mx-2 outline outline-green-500 outline-offset-2 bg-slate-700 hover:bg-slate-600 rounded-full cursor-default drop-shadow-green-glow hover:drop-shadow-green-glow-lg'>{text}</div>
+  )
+}
+
+const Project = ({ project }) => {
+  return (
+    <div className='flex flex-wrap xl:flex-nowrap gap-2'>
+      <div className='xl:w-4/5'>
+        <LinkHeader title={project.name} link={project.link} />
+        <SubHeader title={project.shortDescription} />
+        <Paragraph text={project.description} />
+        <div className='p-6'>
+          {project.toolsUsed.map(tool => 
+            <Pill key={tool} text={tool} />
+          )}
+        </div>
+      </div>
+      <div>
+        <img src={project.image} />
+      </div>
+    </div>
+  )
+}
+
+const Projects = ({ title, projects }) => {
+  return (
+    <div>
+      <Subtitle title={title} />
+      {projects.map(project =>
+        <Project key={project.id} project={project} />
       )}
     </div>
   )
@@ -114,13 +187,11 @@ const Title = () => {
 
 function App() {
 
-  const [ introduction, setIntroduction ] = useState({
-    name: "",
-    text: ""
-  })
+  const [ introduction, setIntroduction ] = useState({ name: "", text: "" })
   const [ experiences, setExperiences ] = useState([])
   const [ certifications, setCertifications ] = useState([])
-  
+  const [ education, setEducation ] = useState([])
+  const [ projects, setProjects ] = useState([])
 
   useEffect(() => {
     introductionService.getIntroduction()
@@ -138,6 +209,16 @@ function App() {
       .catch(error => {
         console.log("error: could not fetch certifications")
       })
+    educationServices.getAllEducation()
+      .then(initialEducation => setEducation(initialEducation))
+      .catch(error => {
+        console.log("error: could not fetch education")
+      })
+    projectsServices.getAllProjects()
+      .then(initialProjects => setProjects(initialProjects))
+      .catch(error => {
+        console.log("error: could not fetch projects")
+      })
   }, [])
 
   return (
@@ -147,8 +228,9 @@ function App() {
         <div className='grid md:grid-cols-1 xl:grid-cols-2 gap-2'>
           <div className='row-auto'><HeaderParagraph title={introduction.name} text={introduction.text} direction='items-start' width="w-3/5"/></div>
           <div className='row-span-3'><Experiences title="Work Experience" experiences={experiences} /></div>
-          {/* TO DO: EDUCATION */}
+          <div className='row-auto'><Education title="Education" education={education} /></div>
           <div className='row-auto'><Certifications title="Certifications" certifications={certifications} /></div>
+          <div className='row-auto xl:col-span-2'><Projects title="Projects" projects={projects} /></div>
         </div>
       </div>
     </div>
