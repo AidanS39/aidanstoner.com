@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import introductionService from './services/introduction'
 import experiencesServices from './services/experiences'
+import certificationsServices from './services/certifications'
 
 const Subtitle = ({ title }) => {
   return (
-    <h1 className={`antialiased font-space pt-8 pb-1 px-4 text-white text-3xl drop-shadow-green-md`}>{title}</h1>
+    <h1 className={`antialiased font-space pt-8 pb-1 px-4 text-white tracking-wide text-3xl drop-shadow-green-md`}>{title}</h1>
   )
 }
 
@@ -57,7 +58,6 @@ const Experience = ( experience ) => {
 }
 
 const Experiences = ({ title, experiences }) => {
-  
   return (
     <div>
       <Subtitle title={title} />
@@ -68,6 +68,31 @@ const Experiences = ({ title, experiences }) => {
   )
 }
 
+const Certification = ({ certification }) => {
+  return (
+    <div>
+      <div>
+      <img src={certification.image} href={certification.link} />
+      </div>
+      <div>
+        <Header title={certification.name} />
+        <SubHeader title={certification.issuedBy} />
+        <Paragraph text={`Issued ${certification.issueDate} • Expires ${certification.expirationDate}`} />
+      </div>
+    </div>
+  )
+}
+
+const Certifications = ({ title, certifications }) => {
+  return (
+    <div>
+      <Subtitle title={title} />
+      {certifications.map(certification => 
+        <Certification key={certification.id} certification={certification} />
+      )}
+    </div>
+  )
+}
 
 const Title = () => {
   return (
@@ -90,6 +115,7 @@ function App() {
     text: ""
   })
   const [ experiences, setExperiences ] = useState([])
+  const [ certifications, setCertifications ] = useState([])
   
 
   useEffect(() => {
@@ -103,6 +129,11 @@ function App() {
       .catch(error => {
         console.log("error: could not fetch experiences")
       })
+    certificationsServices.getAllCertifications()
+      .then(initialCertifications => setCertifications(initialCertifications))
+      .catch(error => {
+        console.log("error: could not fetch certifications")
+      })
   }, [])
 
   return (
@@ -111,6 +142,7 @@ function App() {
         <Title />
         <HeaderParagraph title={introduction.name} text={introduction.text} direction='items-start' width="w-3/5"/>
         <Experiences title="Work Experience" experiences={experiences} />
+        <Certifications title="Certifications" certifications={certifications} />
       </div>
     </div>
   )
