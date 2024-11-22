@@ -108,7 +108,7 @@ const Certification = ({ certification }) => {
   return (
     <div className='flex py-2 items-center'>
       <div>
-        <a href={certification.link}><img src={certification.image} href={certification.link} className='pr-2 cursor-pointer h-[168px] min-w-[184px]' /></a>
+        <a href={certification.link}><img src={certification.image} href={certification.link} className='pr-2 cursor-pointer h-[168px] min-w-[184px] hover:drop-shadow-green-glow-lg' /></a>
       </div>
       <div>
         <Header title={certification.name} />
@@ -139,7 +139,7 @@ const Pill = ({ text }) => {
 const Project = ({ project }) => {
   return (
     <div className='flex flex-wrap xl:flex-nowrap gap-2'>
-      <div className='xl:w-4/5'>
+      <div className='xl:w-1/2'>
         <LinkHeader title={project.name} link={project.link} />
         <SubHeader title={project.shortDescription} />
         <Paragraph text={project.description} />
