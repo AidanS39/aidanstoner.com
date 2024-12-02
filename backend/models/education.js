@@ -17,7 +17,7 @@ const educationSchema = mongoose.Schema({
     school: String,
     major: String,
     specialization: String,
-    gpa: mongoose.Decimal128,
+    gpa: String,
     startDate: String,
     endDate: { type: String, default: '' },
     currentlyAttending: Boolean
