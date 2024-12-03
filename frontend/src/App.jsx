@@ -7,25 +7,25 @@ import projectsServices from './services/projects'
 
 const Subtitle = ({ title }) => {
   return (
-    <h1 className={`antialiased font-space pt-4 pb-1 text-white tracking-wide text-3xl drop-shadow-green-md`}>{title}</h1>
+    <h1 className={`antialiased font-space pt-4 pb-1 text-white text-wrap tracking-wide lg:text-3xl md:text-2xl sm:text-xl text-lg drop-shadow-green-md`}>{title}</h1>
   )
 }
 
 const Header = ({ title }) => {
   return (
-    <h2 className={`antialiased font-space py-2 text-white text-xl tracking-tighter underline`}>{title}</h2>
+    <h2 className={`antialiased font-space py-2 text-white text-wrap lg:text-xl md:text-lg sm:text-base text-sm tracking-tighter underline`}>{title}</h2>
   )
 }
 
 const SubHeader = ({ title }) => {
   return (
-    <h2 className={`antialiased font-space text-white tracking-tighter text-lg`}>{title}</h2>
+    <h2 className={`antialiased font-space text-white text-wrap tracking-tighter lg:text-lg md:text-base sm:text-sm text-xs`}>{title}</h2>
   )
 }
 
 const Paragraph = ({ text, width }) => {
   return (
-    <p className={`${width} font-space text-white text-left text-sm tracking-tight py-1`}>{text}</p>
+    <p className={`${width} font-space text-white text-left lg:text-sm md:text-xs text-xs text-wrap tracking-tight py-1`}>{text}</p>
   )
 }
 
@@ -171,14 +171,14 @@ const Title = () => {
   return (
     <div>
       <div>
-        <h1 className='antialiased font-space pt-8 pb-4 text-white text-center text-6xl drop-shadow-green-lg select-none'>Aidan Stoner</h1>
+        <h1 className='antialiased font-space pt-8 pb-4 text-white text-center lg:text-6xl md:text-5xl sm:text-4xl text-4xl drop-shadow-green-lg select-none'>Aidan Stoner</h1>
       </div>
-      <div className='flex gap-8 pb-8'>
+      <div className='flex xl:flex-nowrap xl:gap-8 lg:gap-6 md:gap-4 gap-2 pb-8'>
         <div className='flex-auto text-right'>
-          <a href='https://www.linkedin.com/in/aidanstoner' className='text-white font-space text-xl px-4 hover:drop-shadow-green-sm underline'>LinkedIn</a>
+          <a href='https://www.linkedin.com/in/aidanstoner' className='text-white font-space lg:text-xl md:text-lg sm:text-base text-sm px-4 hover:drop-shadow-green-sm underline'>LinkedIn</a>
         </div>
         <div className='flex-auto text-left'>
-          <a href='https://github.com/AidanS39' className='text-white font-space text-xl px-4 hover:drop-shadow-green-sm underline'>GitHub</a>
+          <a href='https://github.com/AidanS39' className='text-white font-space lg:text-xl md:text-lg sm:text-base text-sm px-4 hover:drop-shadow-green-sm underline'>GitHub</a>
         </div>
       </div>
     </div>
@@ -223,14 +223,14 @@ function App() {
 
   return (
     <div className='min-h-screen p-2 bg-green-900'>
-      <div className='p-12 m-6 bg-zinc-800 border-4 rounded-xl shadow-3xl text-wrap'>
+      <div className='lg:p-12 p-6 m-6 bg-zinc-800 border-4 rounded-xl shadow-3xl text-wrap'>
         <Title />
-        <div className='grid md:grid-cols-1 xl:grid-cols-2 gap-2'>
-          <div className='row-auto'><HeaderParagraph title={introduction.name} text={introduction.text} direction='items-start' width="w-3/5"/></div>
-          <div className='row-span-3'><Experiences title="Work Experience" experiences={experiences} /></div>
-          <div className='row-auto'><Education title="Education" education={education} /></div>
-          <div className='row-auto'><Certifications title="Certifications" certifications={certifications} /></div>
-          <div className='row-auto xl:col-span-2'><Projects title="Projects" projects={projects} /></div>
+        <div className='grid grid-cols-1 xl:grid-cols-2 gap-2'>
+          <div className='row-auto object-contain'><HeaderParagraph title={introduction.name} text={introduction.text} direction='items-start' width="w-3/5"/></div>
+          <div className='row-span-3 object-contain'><Experiences title="Work Experience" experiences={experiences} /></div>
+          <div className='row-auto object-contain'><Education title="Education" education={education} /></div>
+          <div className='row-auto object-contain'><Certifications title="Certifications" certifications={certifications} /></div>
+          <div className='row-auto xl:col-span-2 object-contain'><Projects title="Projects" projects={projects} /></div>
         </div>
       </div>
     </div>
