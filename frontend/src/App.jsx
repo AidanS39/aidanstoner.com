@@ -223,7 +223,7 @@ function App() {
 
   return (
     <div className='min-h-screen p-2 bg-green-900'>
-      <div className='p-12 m-6 bg-zinc-800 border-4 rounded-xl shadow-3xl'>
+      <div className='p-12 m-6 bg-zinc-800 border-4 rounded-xl shadow-3xl text-wrap'>
         <Title />
         <div className='grid md:grid-cols-1 xl:grid-cols-2 gap-2'>
           <div className='row-auto'><HeaderParagraph title={introduction.name} text={introduction.text} direction='items-start' width="w-3/5"/></div>
