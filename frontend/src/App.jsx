@@ -108,7 +108,7 @@ const Certification = ({ certification }) => {
   return (
     <div className='flex py-2 items-center'>
       <div>
-        <a href={certification.link}><img src={certification.image} href={certification.link} className='pr-2 cursor-pointer h-[168px] min-w-[184px] hover:drop-shadow-green-glow-lg' /></a>
+        <a href={certification.link}><img src={certification.image} href={certification.link} className='pr-2 cursor-pointer h-[168px] min-w-[184px] transition ease-in-out hover:drop-shadow-green-glow-lg hover:scale-105' /></a>
       </div>
       <div>
         <Header title={certification.name} />
@@ -132,13 +132,13 @@ const Certifications = ({ title, certifications }) => {
 
 const Pill = ({ text }) => {
   return (
-    <div className='inline font-space text-white text-xs py-1 px-2 mx-2 outline outline-green-500 outline-offset-2 bg-slate-700 hover:bg-slate-600 rounded-full cursor-default drop-shadow-green-glow hover:drop-shadow-green-glow-lg'>{text}</div>
+    <div className='inline font-space text-white text-xs py-1 px-2 mx-2 outline outline-green-500 outline-offset-2 bg-slate-700 hover:bg-slate-600 rounded-full cursor-default transition ease-in-out drop-shadow-green-glow hover:drop-shadow-green-glow-lg' >{text}</div>
   )
 }
 
 const Project = ({ project }) => {
   return (
-    <div className='columns-1 lg:columns-2 gap-2'>
+    <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
       <div className='container'>
         <LinkHeader title={project.name} link={project.link} />
         <SubHeader title={project.shortDescription} />
@@ -149,7 +149,7 @@ const Project = ({ project }) => {
           )}
         </div>
       </div>
-      <div className='shrink'>
+      <div className='content-center'>
         <img src={project.image} />
       </div>
     </div>
@@ -175,10 +175,10 @@ const Title = () => {
       </div>
       <div className='flex xl:flex-nowrap xl:gap-8 lg:gap-6 md:gap-4 gap-2 pb-8'>
         <div className='flex-auto text-right'>
-          <a href='https://www.linkedin.com/in/aidanstoner' className='text-white font-space lg:text-xl md:text-lg sm:text-base text-sm px-4 hover:drop-shadow-green-sm underline'>LinkedIn</a>
+          <a href='https://www.linkedin.com/in/aidanstoner' className='text-white font-space lg:text-xl md:text-lg sm:text-base text-sm px-4 hover:drop-shadow-green-sm underline hover:lg:text-2xl hover:md:text-xl hover:sm:text-lg hover:text-base'>LinkedIn</a>
         </div>
         <div className='flex-auto text-left'>
-          <a href='https://github.com/AidanS39' className='text-white font-space lg:text-xl md:text-lg sm:text-base text-sm px-4 hover:drop-shadow-green-sm underline'>GitHub</a>
+          <a href='https://github.com/AidanS39' className='text-white font-space lg:text-xl md:text-lg sm:text-base text-sm px-4 hover:drop-shadow-green-sm underline hover:lg:text-2xl hover:md:text-xl hover:sm:text-lg hover:text-base'>GitHub</a>
         </div>
       </div>
     </div>
@@ -222,15 +222,15 @@ function App() {
   }, [])
 
   return (
-    <div className='min-h-screen p-2 bg-green-900'>
-      <div className='lg:p-12 p-6 m-6 bg-zinc-800 border-4 rounded-xl shadow-3xl text-wrap'>
+    <div className='min-h-screen p-2 bg-emerald-950'>
+      <div className='lg:p-12 p-6 m-6 bg-gradient-to-tr from-zinc-950 from-5% via-emerald-900 via-50% to-zinc-950 to-95% border-4 rounded-xl shadow-3xl text-wrap'>
         <Title />
-        <div className='grid grid-cols-1 xl:grid-cols-2 gap-2 gap-x-4'>
-          <div className='row-auto object-contain'><HeaderParagraph title={introduction.name} text={introduction.text} direction='items-start' width="w-3/5"/></div>
-          <div className='row-span-3 object-contain'><Experiences title="Work Experience" experiences={experiences} /></div>
-          <div className='row-auto object-contain'><Education title="Education" education={education} /></div>
-          <div className='row-auto object-contain'><Certifications title="Certifications" certifications={certifications} /></div>
-          <div className='row-auto xl:col-span-2 object-contain'><Projects title="Projects" projects={projects} /></div>
+        <div className='grid grid-cols-1 xl:grid-cols-2 gap-y-2 gap-x-4'>
+          <div className='row-auto'><HeaderParagraph title={introduction.name} text={introduction.text} direction='items-start' width="w-3/5"/></div>
+          <div className='row-span-3'><Experiences title="Work Experience" experiences={experiences} /></div>
+          <div className='row-auto'><Education title="Education" education={education} /></div>
+          <div className='row-auto'><Certifications title="Certifications" certifications={certifications} /></div>
+          <div className='row-auto xl:col-span-2'><Projects title="Projects" projects={projects} /></div>
         </div>
       </div>
     </div>

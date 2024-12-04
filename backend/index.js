@@ -11,7 +11,7 @@ const Education = require('./models/education')
 const Project = require('./models/projects')
 
 app.use(cors())
-// app.use(express.static('dist'))
+app.use(express.static('dist'))
 app.use(express.json())
 
 app.get('/api/introduction', (request, response) => {
