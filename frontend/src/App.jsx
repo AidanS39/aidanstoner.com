@@ -25,7 +25,7 @@ const SubHeader = ({ title }) => {
 
 const Paragraph = ({ text, width }) => {
   return (
-    <p className={`${width} font-space text-white text-left lg:text-sm md:text-xs text-xs text-wrap tracking-tight py-1`}>{text}</p>
+    <p className={`${width} font-space text-white text-left lg:text-base md:text-sm text-xs text-wrap tracking-tight py-1`}>{text}</p>
   )
 }
 
@@ -138,8 +138,8 @@ const Pill = ({ text }) => {
 
 const Project = ({ project }) => {
   return (
-    <div className='flex flex-wrap xl:flex-nowrap gap-2'>
-      <div className='xl:w-1/2'>
+    <div className='columns-1 lg:columns-2 gap-2'>
+      <div className='container'>
         <LinkHeader title={project.name} link={project.link} />
         <SubHeader title={project.shortDescription} />
         <Paragraph text={project.description} />
@@ -149,7 +149,7 @@ const Project = ({ project }) => {
           )}
         </div>
       </div>
-      <div>
+      <div className='shrink'>
         <img src={project.image} />
       </div>
     </div>
@@ -225,7 +225,7 @@ function App() {
     <div className='min-h-screen p-2 bg-green-900'>
       <div className='lg:p-12 p-6 m-6 bg-zinc-800 border-4 rounded-xl shadow-3xl text-wrap'>
         <Title />
-        <div className='grid grid-cols-1 xl:grid-cols-2 gap-2'>
+        <div className='grid grid-cols-1 xl:grid-cols-2 gap-2 gap-x-4'>
           <div className='row-auto object-contain'><HeaderParagraph title={introduction.name} text={introduction.text} direction='items-start' width="w-3/5"/></div>
           <div className='row-span-3 object-contain'><Experiences title="Work Experience" experiences={experiences} /></div>
           <div className='row-auto object-contain'><Education title="Education" education={education} /></div>
