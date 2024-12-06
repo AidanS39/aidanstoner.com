@@ -7,25 +7,25 @@ import projectsServices from './services/projects'
 
 const Subtitle = ({ title }) => {
   return (
-    <h1 className={`antialiased font-space pt-4 pb-1 text-white text-wrap tracking-wide lg:text-3xl md:text-2xl sm:text-xl text-lg drop-shadow-green-md`}>{title}</h1>
+    <h1 className={`antialiased font-montserrat font-medium pt-4 pb-1 text-white text-wrap tracking-tight lg:text-3xl md:text-2xl sm:text-xl text-lg drop-shadow-green-glow-lg`}>{title}</h1>
   )
 }
 
 const Header = ({ title }) => {
   return (
-    <h2 className={`antialiased font-space py-2 text-white text-wrap lg:text-xl md:text-lg sm:text-base text-sm tracking-tighter underline`}>{title}</h2>
+    <h2 className={`antialiased font-montserrat font-medium py-2 text-white text-wrap lg:text-xl md:text-lg sm:text-base text-sm tracking-tighter underline`}>{title}</h2>
   )
 }
 
 const SubHeader = ({ title }) => {
   return (
-    <h2 className={`antialiased font-space text-white text-wrap tracking-tighter lg:text-lg md:text-base sm:text-sm text-xs`}>{title}</h2>
+    <h2 className={`antialiased font-montserrat font-medium text-white text-wrap tracking-tighter lg:text-lg md:text-base sm:text-sm text-xs`}>{title}</h2>
   )
 }
 
 const Paragraph = ({ text, width }) => {
   return (
-    <p className={`${width} font-space text-white text-left lg:text-base md:text-sm text-xs text-wrap tracking-tight py-1`}>{text}</p>
+    <p className={`${width} font-montserrat font-medium font- text-white text-left lg:text-base md:text-sm text-xs text-wrap tracking-tight py-1`}>{text}</p>
   )
 }
 
@@ -41,7 +41,7 @@ const HeaderParagraph = ({ title, text }) => {
 
 const LinkHeader = ({ title, link }) => {
   return (
-    <a href={link} className='hover:drop-shadow-green-md' ><Header title={title} /></a>
+    <a href={link} className='hover:drop-shadow-green-glow-lg' ><Header title={title} /></a>
   )
 }
 
@@ -132,7 +132,7 @@ const Certifications = ({ title, certifications }) => {
 
 const Pill = ({ text }) => {
   return (
-    <div className='inline font-space text-white text-xs py-1 px-2 mx-2 outline outline-green-500 outline-offset-2 bg-slate-700 hover:bg-slate-600 rounded-full cursor-default transition ease-in-out drop-shadow-green-glow hover:drop-shadow-green-glow-lg' >{text}</div>
+    <div className='inline font-montserrat font-medium text-white text-xs py-1 px-2 mx-2 outline outline-green-500 outline-offset-2 bg-slate-700 hover:bg-slate-600 rounded-full cursor-default transition ease-in-out drop-shadow-green-glow hover:drop-shadow-green-glow-lg' >{text}</div>
   )
 }
 
@@ -150,7 +150,7 @@ const Project = ({ project }) => {
         </div>
       </div>
       <div className='content-center'>
-        <img src={project.image} />
+        <img className='drop-shadow-3xl' src={project.image} />
       </div>
     </div>
   )
@@ -171,14 +171,14 @@ const Title = () => {
   return (
     <div>
       <div>
-        <h1 className='antialiased font-space pt-8 pb-4 text-white text-center lg:text-6xl md:text-5xl sm:text-4xl text-4xl drop-shadow-green-lg select-none'>Aidan Stoner</h1>
+        <h1 className='antialiased font-montserrat font-medium pt-8 pb-4 text-white text-center tracking-tighter lg:text-6xl md:text-5xl sm:text-4xl text-4xl drop-shadow-green-glow-lg select-none'>Aidan Stoner</h1>
       </div>
       <div className='flex xl:flex-nowrap xl:gap-8 lg:gap-6 md:gap-4 gap-2 pb-8'>
         <div className='flex-auto text-right'>
-          <a href='https://www.linkedin.com/in/aidanstoner' className='text-white font-space lg:text-xl md:text-lg sm:text-base text-sm px-4 hover:drop-shadow-green-sm underline hover:lg:text-2xl hover:md:text-xl hover:sm:text-lg hover:text-base'>LinkedIn</a>
+          <a href='https://www.linkedin.com/in/aidanstoner' className='text-white font-montserrat font-medium lg:text-xl md:text-lg sm:text-base text-sm px-4 hover:drop-shadow-green-sm underline'>LinkedIn</a>
         </div>
         <div className='flex-auto text-left'>
-          <a href='https://github.com/AidanS39' className='text-white font-space lg:text-xl md:text-lg sm:text-base text-sm px-4 hover:drop-shadow-green-sm underline hover:lg:text-2xl hover:md:text-xl hover:sm:text-lg hover:text-base'>GitHub</a>
+          <a href='https://github.com/AidanS39' className='text-white font-montserrat font-medium lg:text-xl md:text-lg sm:text-base text-sm px-4 hover:drop-shadow-green-sm underline'>GitHub</a>
         </div>
       </div>
     </div>
@@ -222,15 +222,15 @@ function App() {
   }, [])
 
   return (
-    <div className='min-h-screen p-2 bg-emerald-950'>
-      <div className='lg:p-12 p-6 m-6 bg-gradient-to-tr from-zinc-950 from-5% via-emerald-900 via-50% to-zinc-950 to-95% border-4 rounded-xl shadow-3xl text-wrap'>
+    <div className='min-h-screen p-2 bg-emerald-950 snap-mandatory snap-y'>
+      <div className='lg:p-12 p-6 m-6 bg-gradient-to-tr from-zinc-950 from-5% via-emerald-900 via-50% to-zinc-950 to-95% border-4 rounded-xl shadow-3xl text-wrap animate-flip-up animate-delay-[400ms] animate-duration-[2000ms]'>
         <Title />
         <div className='grid grid-cols-1 xl:grid-cols-2 gap-y-2 gap-x-4'>
-          <div className='row-auto'><HeaderParagraph title={introduction.name} text={introduction.text} direction='items-start' width="w-3/5"/></div>
-          <div className='row-span-3'><Experiences title="Work Experience" experiences={experiences} /></div>
-          <div className='row-auto'><Education title="Education" education={education} /></div>
-          <div className='row-auto'><Certifications title="Certifications" certifications={certifications} /></div>
-          <div className='row-auto xl:col-span-2'><Projects title="Projects" projects={projects} /></div>
+          <div className='row-auto snap-center'><HeaderParagraph title={introduction.name} text={introduction.text} direction='items-start' width="w-3/5"/></div>
+          <div className='row-span-3 snap-center'><Experiences title="Work Experience" experiences={experiences} /></div>
+          <div className='row-auto snap-center'><Education title="Education" education={education} /></div>
+          <div className='row-auto snap-center'><Certifications title="Certifications" certifications={certifications} /></div>
+          <div className='row-auto xl:col-span-2 snap-center'><Projects title="Projects" projects={projects} /></div>
         </div>
       </div>
     </div>

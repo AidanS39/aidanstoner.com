@@ -20,7 +20,8 @@ export default {
         'green-md': '1.5px 3px 0px rgba(11, 122, 63, 1.00)',
       },
       fontFamily: {
-        space: ["Space Mono", "sans-serif"]
+        space: ["Space Mono", "Montserrat", "sans-serif"],
+        montserrat: ["Montserrat", "sans-serif"]
       },
       fontSize: {
         
@@ -30,6 +31,8 @@ export default {
       }
     }
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-animated')
+  ],
 }
 
