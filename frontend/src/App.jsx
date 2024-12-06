@@ -45,21 +45,22 @@ const LinkHeader = ({ title, link }) => {
   )
 }
 
-const Nav = ({ text, link }) => {
+const Nav = ({ text, onclick }) => {
   return (
     <div className='inline-block content-center h-16 px-8'>
-      <a href={link} className='font-montserrat font-semibold text-white tracking-tight' >{text}</a>
+      <a className='font-montserrat font-light text-white tracking-wider hover:cursor-pointer' onClick={onclick} >{text}</a>
     </div>
   )
 }
 
-const Navbar = ({ headers, image }) => {
+const Navbar = ({ title, headers, logo }) => {
   return (
-    <div className='bg-zinc-800 items-center h-16 drop-shadow-md text-nowrap'>
+    <div className='bg-zinc-800 items-center min-w-full h-16 drop-shadow-md text-nowrap'>
+      <a className='font-montserrat font-light text-xl text-white tracking-wider mx-10 cursor-default' >{title}</a>
       {headers.map(header =>
-        <Nav key={header.text} text={header.text} link={header.link} />
+        <Nav key={header.text} text={header.text} onclick={header.onclick} />
       )}
-      <img src={image} />
+      <img src={logo} />
     </div>
   )
 }
@@ -240,32 +241,52 @@ function App() {
       })
   }, [])
 
+  const loadHomePage = () => {
+
+  }
+
+  const loadProjectPage = () => {
+    
+  }
+
+  const loadExperiencePage = () => {
+    
+  }
+
+  const loadEducationPage = () => {
+    
+  }
+
+  const loadCertificationPage = () => {
+    
+  }
+
   const headers = [
     {
       text: "Home",
-      link: ""
+      onclick: loadHomePage
     },
     {
       text: "Projects",
-      link: ""
+      onclick: loadProjectPage
     },
     {
       text: "Work Experience",
-      link: ""
+      onclick: loadExperiencePage
     },
     {
       text: "Education",
-      link: ""
+      onclick: loadEducationPage
     },
     {
       text: "Certifications",
-      link: ""
+      onclick: loadCertificationPage
     }
   ]
 
   return (
-    <div className='size-full bg-emerald-950 bg-cover overflow-auto'>
-      <Navbar headers={headers} />
+    <div className=' min-h-screen min-w-full bg-emerald-950 bg-cover overflow-auto'>
+      <Navbar title="Aidan Stoner" headers={headers} logo="" />
       {/* <div className='lg:p-12 p-6 m-6 bg-gradient-to-tr from-zinc-950 from-5% via-emerald-900 via-50% to-zinc-950 to-95% border-4 rounded-xl shadow-3xl text-wrap animate-flip-up animate-delay-[400ms] animate-duration-[2000ms]'>
         <Title />
         <div className='grid grid-cols-1 xl:grid-cols-2 gap-y-2 gap-x-4'>
