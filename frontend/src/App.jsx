@@ -175,10 +175,10 @@ const Title = () => {
       </div>
       <div className='flex xl:flex-nowrap xl:gap-8 lg:gap-6 md:gap-4 gap-2 pb-8'>
         <div className='flex-auto text-right'>
-          <a href='https://www.linkedin.com/in/aidanstoner' className='text-white font-montserrat font-medium lg:text-xl md:text-lg sm:text-base text-sm px-4 hover:drop-shadow-green-sm underline'>LinkedIn</a>
+          <a href='https://www.linkedin.com/in/aidanstoner' className='text-white font-montserrat font-medium lg:text-xl md:text-lg sm:text-base text-sm px-4 hover:drop-shadow-green-glow underline'>LinkedIn</a>
         </div>
         <div className='flex-auto text-left'>
-          <a href='https://github.com/AidanS39' className='text-white font-montserrat font-medium lg:text-xl md:text-lg sm:text-base text-sm px-4 hover:drop-shadow-green-sm underline'>GitHub</a>
+          <a href='https://github.com/AidanS39' className='text-white font-montserrat font-medium lg:text-xl md:text-lg sm:text-base text-sm px-4 hover:drop-shadow-green-glow underline'>GitHub</a>
         </div>
       </div>
     </div>
@@ -222,14 +222,14 @@ function App() {
   }, [])
 
   return (
-    <div className='min-h-screen p-2 bg-emerald-950 snap-mandatory snap-y'>
+    <div className='min-h-screen p-2 bg-emerald-950'>
       <div className='lg:p-12 p-6 m-6 bg-gradient-to-tr from-zinc-950 from-5% via-emerald-900 via-50% to-zinc-950 to-95% border-4 rounded-xl shadow-3xl text-wrap animate-flip-up animate-delay-[400ms] animate-duration-[2000ms]'>
         <Title />
         <div className='grid grid-cols-1 xl:grid-cols-2 gap-y-2 gap-x-4'>
-          <div className='row-auto snap-center'><HeaderParagraph title={introduction.name} text={introduction.text} direction='items-start' width="w-3/5"/></div>
-          <div className='row-span-3 snap-center'><Experiences title="Work Experience" experiences={experiences} /></div>
-          <div className='row-auto snap-center'><Education title="Education" education={education} /></div>
-          <div className='row-auto snap-center'><Certifications title="Certifications" certifications={certifications} /></div>
+          <div className='row-auto'><HeaderParagraph title={introduction.name} text={introduction.text} direction='items-start' width="w-3/5"/></div>
+          <div className='row-span-3'><Experiences title="Work Experience" experiences={experiences} /></div>
+          <div className='row-auto'><Education title="Education" education={education} /></div>
+          <div className='row-auto'><Certifications title="Certifications" certifications={certifications} /></div>
           <div className='row-auto xl:col-span-2 snap-center'><Projects title="Projects" projects={projects} /></div>
         </div>
       </div>
