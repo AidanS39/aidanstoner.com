@@ -25,7 +25,7 @@ const SubHeader = ({ title }) => {
 
 const Paragraph = ({ text, width }) => {
   return (
-    <p className={`${width} font-montserrat font-medium font- text-white text-left lg:text-base md:text-sm text-xs text-wrap tracking-tight py-1`}>{text}</p>
+    <p className={`${width} font-montserrat font-medium text-white text-left lg:text-base md:text-sm text-xs text-wrap tracking-tight py-1`}>{text}</p>
   )
 }
 
@@ -42,6 +42,25 @@ const HeaderParagraph = ({ title, text }) => {
 const LinkHeader = ({ title, link }) => {
   return (
     <a href={link} className='hover:drop-shadow-green-glow-lg' ><Header title={title} /></a>
+  )
+}
+
+const Nav = ({ text, link }) => {
+  return (
+    <div className='inline-block content-center h-16 px-8'>
+      <a href={link} className='font-montserrat font-semibold text-white tracking-tight' >{text}</a>
+    </div>
+  )
+}
+
+const Navbar = ({ headers, image }) => {
+  return (
+    <div className='bg-zinc-800 items-center h-16 drop-shadow-md text-nowrap'>
+      {headers.map(header =>
+        <Nav key={header.text} text={header.text} link={header.link} />
+      )}
+      <img src={image} />
+    </div>
   )
 }
 
@@ -221,9 +240,33 @@ function App() {
       })
   }, [])
 
+  const headers = [
+    {
+      text: "Home",
+      link: ""
+    },
+    {
+      text: "Projects",
+      link: ""
+    },
+    {
+      text: "Work Experience",
+      link: ""
+    },
+    {
+      text: "Education",
+      link: ""
+    },
+    {
+      text: "Certifications",
+      link: ""
+    }
+  ]
+
   return (
-    <div className='min-h-screen p-2 bg-emerald-950'>
-      <div className='lg:p-12 p-6 m-6 bg-gradient-to-tr from-zinc-950 from-5% via-emerald-900 via-50% to-zinc-950 to-95% border-4 rounded-xl shadow-3xl text-wrap animate-flip-up animate-delay-[400ms] animate-duration-[2000ms]'>
+    <div className='size-full bg-emerald-950 bg-cover overflow-auto'>
+      <Navbar headers={headers} />
+      {/* <div className='lg:p-12 p-6 m-6 bg-gradient-to-tr from-zinc-950 from-5% via-emerald-900 via-50% to-zinc-950 to-95% border-4 rounded-xl shadow-3xl text-wrap animate-flip-up animate-delay-[400ms] animate-duration-[2000ms]'>
         <Title />
         <div className='grid grid-cols-1 xl:grid-cols-2 gap-y-2 gap-x-4'>
           <div className='row-auto'><HeaderParagraph title={introduction.name} text={introduction.text} direction='items-start' width="w-3/5"/></div>
@@ -232,7 +275,7 @@ function App() {
           <div className='row-auto'><Certifications title="Certifications" certifications={certifications} /></div>
           <div className='row-auto xl:col-span-2 snap-center'><Projects title="Projects" projects={projects} /></div>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
