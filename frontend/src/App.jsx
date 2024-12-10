@@ -1,4 +1,8 @@
 import { useState, useEffect } from 'react'
+import { useCookies } from 'react-cookie'
+
+import loginService from './services/login'
+import logoutService from './services/logout'
 import introductionService from './services/introduction'
 import experiencesServices from './services/experiences'
 import certificationsServices from './services/certifications'
@@ -43,21 +47,52 @@ const Pill = ({ text }) => {
 
 const Nav = ({ text, onclick }) => {
   return (
-    <div className='inline-block content-center h-16 px-4 border-b border-zinc-600'>
-      <a className='font-montserrat font-medium text-white tracking-wider hover:cursor-pointer opacity-70 hover:opacity-100 transition-opacity' onClick={onclick} >{text}</a>
+    <div className='inline-block content-center h-16 px-2 lg:px-4 border-b border-zinc-400'>
+      <a className='font-montserrat font-medium text-white tracking-wider text-nowrap hover:cursor-pointer opacity-70 hover:opacity-100 transition-opacity' onClick={onclick} >{text}</a>
     </div>
   )
 }
 
-const Navbar = ({ title, headers, logo }) => {
+const Navbar = ({ title, headers, loginOnClick, displayName }) => {
+  
   return (
-    <div className='sticky top-0 z-50 bg-zinc-800 bg-opacity-75 hover:bg-opacity-100 transition backdrop-blur-sm items-center h-16 drop-shadow-md text-nowrap border-b border-zinc-600' >
-      <a className='font-montserrat font-medium text-xl text-white tracking-wider mx-8 cursor-default opacity-70 hover:opacity-100 transition-opacity' href="/" >{title}</a>
+    <div className='sticky top-0 z-50 flex bg-black bg-opacity-50 hover:bg-opacity-100 hover:bg-zinc-900 transition backdrop-blur-sm items-center h-16 drop-shadow-md border-b border-zinc-500' >
+      <div className='inline-block content-center h-16 px-4 lg:px-8 border-b border-zinc-400'>
+        <a className='font-montserrat font-medium text-xl text-white tracking-wider cursor-default opacity-70 hover:opacity-100 transition-opacity text-nowrap' href="/" >{title}</a>
+      </div>
       {headers.map(header =>
         <Nav key={header.text} text={header.text} onclick={header.onclick} />
       )}
-      <img src={logo} />
+      <div className='grow content-center h-16 px-8 border-b border-zinc-400 text-right'>
+        <a className='font-montserrat font-medium text-white tracking-wider hover:cursor-pointer opacity-70 hover:opacity-100 transition-opacity text-nowrap' onClick={loginOnClick} >{displayName}</a>
+      </div>
     </div>
+  )
+}
+
+const Login = ({ login, onLoginClick, onLogoutClick, onChangeUsername, onChangePassword, username, statusMessage }) => {
+  let display = (
+    <>
+      <input id='username' type='text' className='block place-self-center my-4 py-1 px-2 appearance-none shadow border border-black rounded-lg text-white font-montserrat leading-tight bg-black bg-opacity-25 focus:drop-shadow-green-glow' placeholder='username' value={login.username} onChange={onChangeUsername} />
+      <input id='password' type='password' className='block place-self-center my-4 py-1 px-2 appearance-none shadow border border-black rounded-lg text-white font-montserrat leading-tight bg-black bg-opacity-25 focus:drop-shadow-green-glow' placeholder='password' value={login.password} onChange={onChangePassword} />
+      <input id='loginButton' type='button' className='block place-self-center my-4 py-1 px-2 appearance-none shadow border border-black rounded-lg text-white font-montserrat leading-tight bg-green-700 hover:drop-shadow-green-glow active:bg-green-800' value='Log in' onClick={onLoginClick} />
+    </>
+  )
+  if (username) {
+    display = (
+      <input id='logoutButton' type='button' className='block place-self-center my-4 py-1 px-2 appearance-none shadow border border-black rounded-lg text-white font-montserrat leading-tight bg-green-700 hover:drop-shadow-green-glow active:bg-green-800' value='Log out' onClick={onLogoutClick} />
+    )
+  }
+  
+  const statusDisplay = ( 
+      <p className='block place-self-center my-4 py-1 px-2 text-red-700 font-montserrat leading-tight'>{statusMessage}</p>
+  )
+
+  return (
+    <form className='bg-black bg-opacity-50 min-h-screen min-w-full content-center backdrop-blur-xl'>
+      {statusDisplay}
+      {display}
+    </form>
   )
 }
 
@@ -68,6 +103,24 @@ const Section = ({ title, paragraphs }) => {
       {paragraphs.map(paragraph => 
         <Paragraph key={title} text={paragraph} />
       )}
+    </div>
+  )
+}
+
+const Title = () => {
+  return (
+    <div>
+      <div>
+        <h1 className='antialiased font-montserrat font-medium py-2 text-white text-center tracking-tighter lg:text-[72px] md:text-6xl sm:text-5xl text-4xl drop-shadow-2xl select-none'>Aidan Stoner</h1>
+      </div>
+      <div className='flex xl:flex-nowrap xl:gap-x-8 lg:gap-x-6 md:gap-x-4 gap-x-2 pb-6'>
+        <div className='flex-auto text-right'>
+          <a href='https://www.linkedin.com/in/aidanstoner' className='text-white font-montserrat font-medium lg:text-xl md:text-lg sm:text-base text-sm px-4 hover:drop-shadow-green-glow underline'>LinkedIn</a>
+        </div>
+        <div className='flex-auto text-left'>
+          <a href='https://github.com/AidanS39' className='text-white font-montserrat font-medium lg:text-xl md:text-lg sm:text-base text-sm px-4 hover:drop-shadow-green-glow underline'>GitHub</a>
+        </div>
+      </div>
     </div>
   )
 }
@@ -102,10 +155,10 @@ const Experience = ({ experience }) => {
   )
 }
 
-const Experiences = ({ title, experiences }) => {
+const Experiences = ({ experiences }) => {
   return (
     <div>
-      <Subtitle title={title} />
+      <Subtitle title="Work Experience" />
       {experiences.map(currentExperience =>
         <Experience key={currentExperience.id} experience={currentExperience} />
       )}
@@ -131,10 +184,10 @@ const School = ({ school }) => {
   )
 }
 
-const Education = ({ title, education }) => {
+const Education = ({ education }) => {
   return (
     <div>
-      <Subtitle title={title} />
+      <Subtitle title="Education" />
       {education.map(school =>
         <School key={school.id} school={school} />
       )}
@@ -157,10 +210,10 @@ const Certification = ({ certification }) => {
   )
 }
 
-const Certifications = ({ title, certifications }) => {
+const Certifications = ({ certifications }) => {
   return (
     <div>
-      <Subtitle title={title} />
+      <Subtitle title="Certifications" />
       {certifications.map(certification => 
         <Certification key={certification.id} certification={certification} />
       )}
@@ -188,31 +241,13 @@ const Project = ({ project }) => {
   )
 }
 
-const Projects = ({ title, projects }) => {
+const Projects = ({ projects }) => {
   return (
     <div>
-      <Subtitle title={title} />
+      <Subtitle title="Projects" />
       {projects.map(project =>
         <Project key={project.id} project={project} />
       )}
-    </div>
-  )
-}
-
-const Title = () => {
-  return (
-    <div>
-      <div>
-        <h1 className='antialiased font-montserrat font-medium py-2 text-white text-center tracking-tighter lg:text-[72px] md:text-6xl sm:text-5xl text-4xl drop-shadow-2xl select-none'>Aidan Stoner</h1>
-      </div>
-      <div className='flex xl:flex-nowrap xl:gap-x-8 lg:gap-x-6 md:gap-x-4 gap-x-2 pb-6'>
-        <div className='flex-auto text-right'>
-          <a href='https://www.linkedin.com/in/aidanstoner' className='text-white font-montserrat font-medium lg:text-xl md:text-lg sm:text-base text-sm px-4 hover:drop-shadow-green-glow underline'>LinkedIn</a>
-        </div>
-        <div className='flex-auto text-left'>
-          <a href='https://github.com/AidanS39' className='text-white font-montserrat font-medium lg:text-xl md:text-lg sm:text-base text-sm px-4 hover:drop-shadow-green-glow underline'>GitHub</a>
-        </div>
-      </div>
     </div>
   )
 }
@@ -225,8 +260,22 @@ function App() {
   const [ education, setEducation ] = useState([])
   const [ projects, setProjects ] = useState([])
   const [ display, setDisplay ] = useState([])
+  const [ statusMessage, setStatusMessage ] = useState('')
+  const [ modal, setModal ] = useState([])
+  const [ login, setLogin ] = useState({
+    username: "", 
+    password: ""
+  })
+  const [ displayName, setDisplayName ] = useState("Log in")
+
+  const [ cookies, setCookie, removeCookie ] = useCookies(['token'])
 
   useEffect(() => {
+    
+    if (cookies.username) {
+      setDisplayName(cookies.username)
+    }
+
     introductionService.getIntroduction()
       .then(initialIntroduction => {
         setIntroduction(initialIntroduction)
@@ -274,12 +323,55 @@ function App() {
     document.title = `${display} | Aidan Stoner`
   }, [display])
 
+  const handleLoginClick = (event) => {
+    event.preventDefault()
+    loginService.postLogin(login)
+      .then(response => {
+        loadHomePage()
+        setDisplayName(login.username)
+        setLogin({username: "", password: ""})
+      })
+      .catch(error => {
+        if (error.code === "ERR_BAD_REQUEST") {
+          console.log("invalid username or password")
+          setStatusMessage('Invalid username or password.')
+          setTimeout(() => setStatusMessage(''), 5000)
+        }
+        else {
+          console.log("error: failed to log in")
+        }
+      })
+  }
+
+  const handleLogoutClick = (event) => {
+    event.preventDefault()
+    
+    logoutService.postLogout()
+      .then(response => {
+        loadHomePage()
+        setDisplayName('Log in')
+        setLogin({username: "", password: ""})
+      })
+      .catch(error => {
+        console.log("error: failed to log out")
+        window.location.replace('/')
+      })
+  }
+
+  const onChangeUsername = (event) => {
+    setLogin({...login, username: event.target.value})
+  }
+
+  const onChangePassword = (event) => {
+    setLogin({...login, password: event.target.value})
+  }
+
   const displays = {
     Introduction: <Introduction sections={introduction} />,
-    Projects: <Projects title="Projects" projects={projects} />,
-    Experiences: <Experiences title="Work Experience" experiences={experiences} />,
-    Education: <Education title="Education" education={education} />,
-    Certifications: <Certifications title="Certifications" certifications={certifications} />
+    Projects: <Projects projects={projects} />,
+    Experiences: <Experiences experiences={experiences} />,
+    Education: <Education education={education} />,
+    Certifications: <Certifications certifications={certifications} />,
   }
 
   const renderPage = () => {
@@ -289,22 +381,27 @@ function App() {
   }
 
   const loadHomePage = () => {
+    setModal("Blank")
     setDisplay("Introduction")
   }
 
   const loadProjectPage = () => {
+    setModal("Blank")
     setDisplay("Projects")
   }
 
   const loadExperiencePage = () => {
+    setModal("Blank")
     setDisplay("Experiences")
   }
 
   const loadEducationPage = () => {
+    setModal("Blank")
     setDisplay("Education")
   }
 
   const loadCertificationPage = () => {
+    setModal("Blank")
     setDisplay("Certifications")
   }
 
@@ -331,13 +428,42 @@ function App() {
     }
   ]
 
+  const modals = {
+    Blank: <></>,
+    Login: <Login login={login} onLoginClick={handleLoginClick} onLogoutClick={handleLogoutClick} onChangeUsername={onChangeUsername} onChangePassword={onChangePassword} username={cookies.username} statusMessage={statusMessage} />
+  }
+
+  const renderModal = () => {
+    if (modal === "Blank") {
+      return (
+        modals[modal]
+      )
+    }
+    else {
+      return (
+        <div className='fixed top-0 min-h-screen w-full ' >
+          {modals[modal]}
+        </div>
+      )
+    }
+  }
+
+  const loadLoginModal = () => {
+    setModal("Login")
+    setLogin({username: "", password: ""})
+  }
+
   return (
-    <div className='relative transition-all'>
-      <Navbar title="Aidan Stoner" headers={headers} logo="" />
-      <div className='lg:p-12 p-6 m-6 bg-gradient-to-r from-zinc-950 from-5% via-emerald-950 via-50% to-zinc-950 to-95% border-1 rounded-xl shadow-lg text-wrap'>
-        {renderPage()}
+    <>
+      <div className='relative transition-all'>
+        <Navbar title="Aidan Stoner" headers={headers} loginOnClick={loadLoginModal} displayName={displayName} />
+        <div className='block lg:p-12 p-6 m-6 bg-gradient-to-r from-zinc-950 from-5% via-emerald-950 via-50% to-zinc-950 to-95% border-1 rounded-xl shadow-lg text-wrap'>
+          {renderPage()}
+        </div>
+        
       </div>
-    </div>
+      {renderModal()}
+    </>
   )
 }
 

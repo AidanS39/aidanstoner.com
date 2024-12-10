@@ -5,18 +5,18 @@ mongoose.set('strictQuery', false)
 
 mongoose.connect(process.env.MONGODB_URL)
     .then(result => {
-        console.log('introduction connected to MongoDB')
+        console.log('login connected to MongoDB')
     })
     .catch(error => {
         console.log('error occured when connecting to MongoDB: ', error)
     })
 
-const introductionSchema = new mongoose.Schema({
-    title: String,
-    paragraphs: [String]
+const loginSchema = new mongoose.Schema({
+    username: String,
+    password: String
 })
 
-introductionSchema.set('toJSON', {
+loginSchema.set('toJSON', {
     transform: (document, returnedObject) => {
         returnedObject.id = returnedObject._id.toString()
         delete returnedObject._id
@@ -24,4 +24,4 @@ introductionSchema.set('toJSON', {
     }
 })
 
-module.exports = mongoose.model('Introduction', introductionSchema)
+module.exports = mongoose.model('Login', loginSchema)
