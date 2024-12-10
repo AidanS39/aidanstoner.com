@@ -47,7 +47,7 @@ const Pill = ({ text }) => {
 
 const Nav = ({ text, onclick }) => {
   return (
-    <div className='inline-block content-center h-16 px-2 lg:px-4 border-b border-zinc-400'>
+    <div className='inline-block content-center h-16 px-2 lg:px-4'>
       <a className='font-montserrat font-medium text-white tracking-wider text-nowrap hover:cursor-pointer opacity-70 hover:opacity-100 transition-opacity' onClick={onclick} >{text}</a>
     </div>
   )
@@ -56,29 +56,29 @@ const Nav = ({ text, onclick }) => {
 const Navbar = ({ title, headers, loginOnClick, displayName }) => {
   
   return (
-    <div className='sticky top-0 z-50 flex bg-black bg-opacity-50 hover:bg-opacity-100 hover:bg-zinc-900 transition backdrop-blur-sm items-center h-16 drop-shadow-md border-b border-zinc-500' >
-      <div className='inline-block content-center h-16 px-4 lg:px-8 border-b border-zinc-400'>
+    <div className='sticky top-0 z-50 flex flex-wrap bg-black bg-opacity-50 hover:bg-opacity-100 hover:bg-zinc-900 transition backdrop-blur-sm items-center min-h-16 drop-shadow-md border-b border-zinc-500' >
+      <div className='inline-block content-center h-16 px-4 lg:px-8'>
         <a className='font-montserrat font-medium text-xl text-white tracking-wider cursor-default opacity-70 hover:opacity-100 transition-opacity text-nowrap' href="/" >{title}</a>
       </div>
       {headers.map(header =>
         <Nav key={header.text} text={header.text} onclick={header.onclick} />
       )}
-      <div className='grow content-center h-16 px-8 border-b border-zinc-400 text-right'>
+      <div className='grow content-center h-16 px-8 text-right'>
         <a className='font-montserrat font-medium text-white tracking-wider hover:cursor-pointer opacity-70 hover:opacity-100 transition-opacity text-nowrap' onClick={loginOnClick} >{displayName}</a>
       </div>
     </div>
   )
 }
 
-const Login = ({ login, onLoginClick, onLogoutClick, onChangeUsername, onChangePassword, username, statusMessage }) => {
+const Login = ({ login, onLoginClick, onLogoutClick, onChangeUsername, onChangePassword, displayName, statusMessage }) => {
   let display = (
     <>
-      <input id='username' type='text' className='block place-self-center my-4 py-1 px-2 appearance-none shadow border border-black rounded-lg text-white font-montserrat leading-tight bg-black bg-opacity-25 focus:drop-shadow-green-glow' placeholder='username' value={login.username} onChange={onChangeUsername} />
-      <input id='password' type='password' className='block place-self-center my-4 py-1 px-2 appearance-none shadow border border-black rounded-lg text-white font-montserrat leading-tight bg-black bg-opacity-25 focus:drop-shadow-green-glow' placeholder='password' value={login.password} onChange={onChangePassword} />
+      <input id='username' type='text' className='block place-self-center my-4 py-1 px-2 appearance-none shadow border border-black rounded-lg text-white font-montserrat leading-tight hover:border-green-900 focus:border-green-600 focus:outline-none bg-black bg-opacity-25' placeholder='username' value={login.username} onChange={onChangeUsername} />
+      <input id='password' type='password' className='block place-self-center my-4 py-1 px-2 appearance-none shadow border border-black rounded-lg text-white font-montserrat leading-tight hover:border-green-900 focus:border-green-600 focus:outline-none bg-black bg-opacity-25' placeholder='password' value={login.password} onChange={onChangePassword} />
       <input id='loginButton' type='button' className='block place-self-center my-4 py-1 px-2 appearance-none shadow border border-black rounded-lg text-white font-montserrat leading-tight bg-green-700 hover:drop-shadow-green-glow active:bg-green-800' value='Log in' onClick={onLoginClick} />
     </>
   )
-  if (username) {
+  if (displayName !== 'Log in') {
     display = (
       <input id='logoutButton' type='button' className='block place-self-center my-4 py-1 px-2 appearance-none shadow border border-black rounded-lg text-white font-montserrat leading-tight bg-green-700 hover:drop-shadow-green-glow active:bg-green-800' value='Log out' onClick={onLogoutClick} />
     )
@@ -430,7 +430,7 @@ function App() {
 
   const modals = {
     Blank: <></>,
-    Login: <Login login={login} onLoginClick={handleLoginClick} onLogoutClick={handleLogoutClick} onChangeUsername={onChangeUsername} onChangePassword={onChangePassword} username={cookies.username} statusMessage={statusMessage} />
+    Login: <Login login={login} onLoginClick={handleLoginClick} onLogoutClick={handleLogoutClick} onChangeUsername={onChangeUsername} onChangePassword={onChangePassword} displayName={displayName} statusMessage={statusMessage} />
   }
 
   const renderModal = () => {
@@ -455,7 +455,7 @@ function App() {
 
   return (
     <>
-      <div className='relative transition-all'>
+      <div className='relative'>
         <Navbar title="Aidan Stoner" headers={headers} loginOnClick={loadLoginModal} displayName={displayName} />
         <div className='block lg:p-12 p-6 m-6 bg-gradient-to-r from-zinc-950 from-5% via-emerald-950 via-50% to-zinc-950 to-95% border-1 rounded-xl shadow-lg text-wrap'>
           {renderPage()}
