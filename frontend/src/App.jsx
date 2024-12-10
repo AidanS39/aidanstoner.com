@@ -333,7 +333,7 @@ function App() {
       })
       .catch(error => {
         if (error.code === "ERR_BAD_REQUEST") {
-          console.log("invalid username or password")
+          console.log("invalid username or password", error)
           setStatusMessage('Invalid username or password.')
           setTimeout(() => setStatusMessage(''), 5000)
         }
