@@ -11,7 +11,7 @@ import projectsServices from './services/projects'
 
 const Subtitle = ({ title }) => {
   return (
-    <h1 className='antialiased font-montserrat font-medium pt-1 pb-1 text-white text-center text-wrap tracking-tight lg:text-5xl md:text-4xl sm:text-3xl text-2xl'>{title}</h1>
+    <h1 className='antialiased font-montserrat font-medium pt-1 pb-1 text-white text-center text-wrap grow tracking-tight lg:text-5xl md:text-4xl sm:text-3xl text-2xl'>{title}</h1>
   )
 }
 
@@ -459,10 +459,11 @@ function App() {
     <>
       <div className='relative'>
         <Navbar title="Aidan Stoner" headers={headers} loginOnClick={loadLoginModal} displayName={displayName} />
-        <div className='block place-self-center lg:p-12 p-6 m-6 bg-gradient-to-r from-zinc-950 from-5% via-emerald-950 via-50% to-zinc-950 to-95% border-1 rounded-xl shadow-lg max-w-[85rem] text-wrap'>
-          {renderPage()}
+        <div className='m-6'>
+          <div className='block place-self-center lg:p-12 p-6 w-full max-w-[70rem] bg-gradient-to-r from-zinc-950 from-5% via-emerald-950 via-50% to-zinc-950 to-95% box-border rounded-xl shadow-lg text-wrap'>
+            {renderPage()}
+          </div>
         </div>
-        
       </div>
       {renderModal()}
     </>
