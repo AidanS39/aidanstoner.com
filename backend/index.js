@@ -45,30 +45,36 @@ app.post('/api/login', (request, response) => {
   else {
     const username = request.body.username
     const password = request.body.password
-    Login.findOne({ username: username, password: password })
-      .then(account => {
-        if (account === null) {
-          response.status(403).json({ error: "invalid username or password" })
-        }
-        else {
-          const token = jwt.sign({ name: username }, process.env.ACCESS_KEY, {expiresIn: '60m' })
-          response.cookie('token', token, {
-            maxAge: 3600000,
-            httpOnly: true,
-            secure: true,
-            sameSite: true
-          })
-          response.cookie('username', username, {
-            maxAge: 3600000,
-            secure: true,
-            sameSite: true
-          })
-          response.status(200).end()
-        }
-      })
-      .catch(error => {
-        response.status(403).json({ error: "invalid username or password" })
-      })
+
+    if (!process.env.ACCESS_KEY) {
+      response.status(403)
+    }
+    else {
+      Login.findOne({ username: username, password: password })
+        .then(account => {
+          if (account === null) {
+            response.status(403).json({ error: "invalid username or password" })
+          }
+          else {
+            const token = jwt.sign({ name: username }, process.env.ACCESS_KEY, {expiresIn: '60m' })
+            response.cookie('token', token, {
+              maxAge: 3600000,
+              httpOnly: true,
+              secure: true,
+              sameSite: true
+            })
+            response.cookie('username', username, {
+              maxAge: 3600000,
+              secure: true,
+              sameSite: true
+            })
+            response.status(200).end()
+          }
+        })
+        .catch(error => {
+          response.status(500).json({ error: "failed to authenticate user" })
+        })
+    }
   }
 })
 
