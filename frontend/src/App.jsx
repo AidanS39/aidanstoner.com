@@ -56,7 +56,7 @@ const Nav = ({ text, onclick }) => {
 const Navbar = ({ title, headers, loginOnClick, displayName }) => {
   
   return (
-    <div className='sticky top-0 z-50 bg-black bg-opacity-50 hover:bg-opacity-100 hover:bg-zinc-900 transition backdrop-blur-sm items-center min-h-16 drop-shadow-md border-b border-zinc-500' >
+    <div className='sticky flex flex-col justify-center top-0 z-50 bg-black bg-opacity-50 hover:bg-opacity-100 hover:bg-zinc-900 transition backdrop-blur-sm items-center min-h-16 drop-shadow-md border-b border-zinc-500' >
       <div className='flex flex-wrap flex-grow max-w-[90rem] xl:min-w-[80rem] place-self-center'>
         <div className='inline-block content-center h-16 px-4 lg:px-8'>
           <a className='font-montserrat font-medium text-xl text-white tracking-wider cursor-default opacity-70 hover:opacity-100 transition-opacity text-nowrap' href="/" >{title}</a>
@@ -457,7 +457,7 @@ function App() {
 
   return (
     <>
-      <div className='relative'>
+      <div className='relative flex flex-col justify-center'>
         <Navbar title="Aidan Stoner" headers={headers} loginOnClick={loadLoginModal} displayName={displayName} />
         <div className='m-6 flex justify-center'>
           <div className='block lg:p-12 p-6 w-full max-w-[70rem] bg-gradient-to-r from-zinc-950 from-5% via-emerald-950 via-50% to-zinc-950 to-95% box-border rounded-xl shadow-lg text-wrap'>
