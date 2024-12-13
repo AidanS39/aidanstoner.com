@@ -459,8 +459,8 @@ function App() {
     <>
       <div className='relative'>
         <Navbar title="Aidan Stoner" headers={headers} loginOnClick={loadLoginModal} displayName={displayName} />
-        <div className='m-6'>
-          <div className='block place-self-center lg:p-12 p-6 w-full max-w-[70rem] bg-gradient-to-r from-zinc-950 from-5% via-emerald-950 via-50% to-zinc-950 to-95% box-border rounded-xl shadow-lg text-wrap'>
+        <div className='m-6 flex justify-center'>
+          <div className='block lg:p-12 p-6 w-full max-w-[70rem] bg-gradient-to-r from-zinc-950 from-5% via-emerald-950 via-50% to-zinc-950 to-95% box-border rounded-xl shadow-lg text-wrap'>
             {renderPage()}
           </div>
         </div>
