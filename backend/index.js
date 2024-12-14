@@ -303,7 +303,6 @@ app.post('/api/projects', authenticateUser, (request, response) => {
     body.description && 
     body.toolsUsed && 
     body.link && 
-    body.image && 
     body.started && 
     body.completed && 
     body.comments)) {

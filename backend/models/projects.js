@@ -14,7 +14,7 @@ mongoose.connect(process.env.MONGODB_URL)
 const projectSchema = mongoose.Schema({
     name: String,
     shortDescription: String,
-    description: String,
+    description: [String],
     toolsUsed: [String],
     link: String,
     image: String,

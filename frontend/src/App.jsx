@@ -29,7 +29,7 @@ const SubHeader = ({ title }) => {
 
 const Paragraph = ({ text }) => {
   return (
-    <p className='font-montserrat font-medium text-white text-left leading-loose tracking-tight lg:text-base md:text-sm text-xs text-wrap py-1'>{text}</p>
+    <p className='font-montserrat font-medium text-white text-left tracking-tight lg:text-base md:text-sm text-xs text-wrap py-1'>{text}</p>
   )
 }
 
@@ -224,21 +224,33 @@ const Certifications = ({ certifications }) => {
 }
 
 const Project = ({ project }) => {
+  let image = (
+    <>
+    </>
+  )
+  if (project.image) {
+    image = (
+      <div className='content-center grow basis-1/2'>
+        <img className='drop-shadow-3xl' src={project.image} />
+      </div>
+    )
+  }
+  
   return (
-    <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
-      <div className='container'>
+    <div className='flex gap-2 flex-wrap lg:flex-nowrap'>
+      <div className='grow basis-1/2 flex-initial flex flex-wrap flex-col'>
         <LinkHeader title={project.name} link={project.link} />
         <SubHeader title={project.shortDescription} />
-        <Paragraph text={project.description} />
-        <div className='flex gap-4 py-4'>
+        {project.description.map(paragraph => 
+          <Paragraph text={paragraph} />
+        )}
+        <div className='flex flex-wrap gap-4 py-4'>
           {project.toolsUsed.map(tool => 
             <Pill key={tool} text={tool} />
           )}
         </div>
       </div>
-      <div className='content-center'>
-        <img className='drop-shadow-3xl' src={project.image} />
-      </div>
+      {image}
     </div>
   )
 }
