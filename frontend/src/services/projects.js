@@ -7,4 +7,12 @@ const getAllProjects = () => {
     return request.then(response => response.data)
 }
 
-export default { getAllProjects }
+const addProject = () => {
+
+}
+
+const modifyProject = () => {
+
+}
+
+export default { getAllProjects, addProject, modifyProject }

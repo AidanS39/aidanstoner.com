@@ -22,12 +22,16 @@ app.use(cookieParser())
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 
 function authenticateUser(request, response, next) {
-  const authHeader = request.cookies['token']
+  const authToken = request.cookies['token']
   if (authToken === null) {
+    response.clearCookie('token')
+    response.clearCookie('username')
     return response.sendStatus(401)
   }
   jwt.verify(authToken, process.env.ACCESS_KEY, (error, user) => {
     if (error) {
+      response.clearCookie('token')
+      response.clearCookie('username')
       return response.sendStatus(403)
     }
     request.user = user
@@ -77,7 +81,6 @@ app.post('/api/login', (request, response) => {
     }
   }
 })
-
 app.post('/api/logout', (request, response) => {
   if (request.cookies.token) {
     response.clearCookie('token')
@@ -85,6 +88,8 @@ app.post('/api/logout', (request, response) => {
     response.status(200).end()
   }
   else {
+    response.clearCookie('token')
+    response.clearCookie('username')
     response.status(404).json({ error: 'token missing' })
   }
 })
@@ -103,7 +108,7 @@ app.post('/api/introduction', authenticateUser, (request, response) => {
 
   if (!(body.title && 
     body.paragraphs)) {
-    response.status(404).json({ error: 'content missing' })
+    response.status(400).json({ error: 'content missing' })
   }
   else {
     const introduction = new Introduction({
@@ -120,6 +125,38 @@ app.post('/api/introduction', authenticateUser, (request, response) => {
       })
   }
 })
+app.put('/api/introduction/:id', authenticateUser, (request, response) => {
+  const body = request.body
+
+  if (body.id != request.params.id) {
+    response.status(400).json({ error: 'id mismatch' })
+  }
+  else if (!(body.title && 
+    body.paragraphs)) {
+    response.status(400).json({ error: 'content missing' })
+  }
+  else {
+    Introduction.findByIdAndUpdate(body.id, {
+      title: body.title,
+      paragraphs: body.paragraphs
+    })
+      .then(result => {
+        response.json(result)
+      })
+      .catch(error => {
+        response.status(400).end()
+      })
+  }
+})
+app.delete('/api/introduction/:id', authenticateUser, (request, response) => {
+  Introduction.findByIdAndDelete(request.params.id)
+    .then(result => {
+      response.status(204).json(result)
+    })
+    .catch(error => {
+      response.status(400).end()
+    })
+  })
 
 app.get('/api/experiences', (request, response) => {
   Experience.find({})
@@ -148,8 +185,8 @@ app.post('/api/experiences', authenticateUser, (request, response) => {
     body.description && 
     body.startDate && 
     body.endDate && 
-    body.stillWorking && 
-    body.skills)) {
+    body.stillWorking != undefined && 
+    body.skills && true)) {
     response.status(400).json({ error: 'content missing' })
   }
   else {
@@ -171,6 +208,50 @@ app.post('/api/experiences', authenticateUser, (request, response) => {
         response.status(400).json({ error: 'bad request' })
       })
   }
+})
+app.put('/api/experiences/:id', authenticateUser, (request, response) => {
+  const body = request.body
+
+  if (body.id != request.params.id) {
+    response.status(400).json({ error: 'id mismatch' })
+  }
+  else if (!(body.title && 
+    body.employer && 
+    body.location && 
+    body.description && 
+    body.startDate && 
+    body.endDate && 
+    body.stillWorking != undefined && 
+    body.skills && true)) {
+    response.status(400).json({ error: 'content missing' })
+  }
+  else {
+    Experience.findByIdAndUpdate(body.id, {
+      title: body.title,
+      employer: body.employer,
+      location: body.location,
+      description: body.description,
+      startDate: body.startDate,
+      endDate: body.endDate,
+      stillWorking: body.stillWorking,
+      skills: body.skills
+    })
+      .then(result => {
+        response.json(result)
+      })
+      .catch(error => {
+        response.status(400).end()
+      })
+  }
+})
+app.delete('/api/experiences/:id', authenticateUser, (request, response) => {
+  Experience.findByIdAndDelete(request.params.id)
+    .then(result => {
+      response.status(204).json(result)
+    })
+    .catch(error => {
+      response.status(400).end()
+    })
 })
 
 app.get('/api/certifications', (request, response) => {

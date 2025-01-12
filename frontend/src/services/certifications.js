@@ -7,4 +7,12 @@ const getAllCertifications = () => {
   return request.then(response => response.data)
 }
 
-export default { getAllCertifications }
+const addCertification = () => {
+
+}
+
+const modifyCertification = () => {
+
+}
+
+export default { getAllCertifications, addCertification, modifyCertification }

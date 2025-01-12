@@ -7,4 +7,12 @@ const getAllExperiences = () => {
   return request.then(response => response.data)
 }
 
-export default { getAllExperiences }
+const addExperience = () => {
+
+}
+
+const modifyExperience = () => {
+  
+}
+
+export default { getAllExperiences, addExperience, modifyExperience }

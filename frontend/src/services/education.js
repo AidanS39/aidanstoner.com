@@ -7,4 +7,12 @@ const getAllEducation = () => {
     return request.then(response => response.data)
 }
 
-export default { getAllEducation }
+const addEducation = () => {
+
+}
+
+const modifyEducation = () => {
+
+}
+
+export default { getAllEducation, addEducation, modifyEducation }
