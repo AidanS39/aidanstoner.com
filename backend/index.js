@@ -51,7 +51,7 @@ app.post('/api/login', (request, response) => {
     const password = request.body.password
 
     if (!process.env.ACCESS_KEY) {
-      response.status(403)
+      response.status(403).json({ error: 'missing access key' })
     }
     else {
       Login.findOne({ username: username, password: password })
