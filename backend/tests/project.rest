@@ -1,0 +1,15 @@
+### @getProjects
+GET http://localhost:3001/api/projects
+Accept: application/json
+
+### @createProject
+POST http://localhost:3001/api/projects
+Content-Type: application/json
+
+{
+    "image": "",
+    "title": "Authorship Attribution",
+    "text": "Using N-Grams and Classification to rank likely authors based on writing style",
+    "link": "https://github.com/AidanS39/csc427_project3",
+    "linkTitle": "View project on GitHub"
+}
