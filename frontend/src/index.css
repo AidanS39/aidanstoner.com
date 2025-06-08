@@ -1,10 +1,56 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@plugin "tailwind-scrollbar";
 
-body {
-  @apply bg-emerald-950;
+@theme {
+    --font-libre: "Libre Franklin", "sans-serif";
+}
+
+html, body, #root {
+  @apply text-white font-thin font-libre scrollbar-track-slate-900 scrollbar-thumb-slate-300;
+}
+
+@layer base {
+  body {
+    position: relative;
+    z-index: 0;
+    background: #18203e;
+  }
+}
+
+@theme {
+    --color-primary: #18203e;
+    --color-secondary: #3d52a0;
+    --color-tertiary: #7091e6;
+    --color-quaternary: #adbbda;
+    --color-quinary: #ede8f5;
+}
+
+@theme {
+  --animate-orbs: pulsate 25s infinite ease-in-out;
+}
+
+@keyframes pulsate {
+  0% {
+    transform: scale(1) translate(0px, 0px);
+  }
+  33% {
+    transform: scale(1.2) translate(128px, 32px);
+  }
+  66% {
+    transform: scale(0.8) translate(-32px, -128px);
+  }
+  100% {
+    transform: scale(1) translate(0px, 0px);
+  }
+}
+
+@layer utilities {
+  .animation-delay-3000 {
+    animation-delay: 3s;
+  }
+  .animation-delay-6000 {
+    animation-delay: 6s;
+  }
 }

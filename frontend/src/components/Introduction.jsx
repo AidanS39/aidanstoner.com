@@ -1,53 +1,24 @@
-import { Subtitle, Paragraph, EditButton, AddButton } from './Content'
+// Component dependencies
+import { PageTitle, Heading, Paragraph, Image, } from './Utilities'
+import profile_picture from '../assets/profile_picture.png'
 
-const Section = ({ title, paragraphs }) => {
+const Introduction = ({ intro }) => {
   return (
-    <div>
-      <Subtitle key={title} title={title} />
-      {paragraphs.map((paragraph, index) => 
-        <Paragraph key={title + "_" + index} text={paragraph} />
-      )}
-    </div>
-  )
-}
-
-const Title = () => {
-  return (
-    <div>
-      <div>
-        <h1 className='antialiased font-montserrat font-medium py-2 text-white text-center tracking-tighter lg:text-[72px] md:text-6xl sm:text-5xl text-4xl drop-shadow-2xl select-none'>Aidan Stoner</h1>
-      </div>
-      <div className='flex xl:flex-nowrap xl:gap-x-8 lg:gap-x-6 md:gap-x-4 gap-x-2 pb-6'>
-        <div className='flex-auto text-right'>
-          <a href='https://www.linkedin.com/in/aidanstoner' className='text-white font-montserrat font-medium lg:text-xl md:text-lg sm:text-base text-sm px-4 hover:drop-shadow-green-glow underline'>LinkedIn</a>
-        </div>
-        <div className='flex-auto text-left'>
-          <a href='https://github.com/AidanS39' className='text-white font-montserrat font-medium lg:text-xl md:text-lg sm:text-base text-sm px-4 hover:drop-shadow-green-glow underline'>GitHub</a>
+    <section className="w-full px-12 py-16">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex items-center gap-10">
+          <div className="basis-5/7 space-y-6">
+            <PageTitle title={intro.name} />
+            <Heading heading={intro.subtitle} />
+            <Paragraph text={intro.bio} />
+          </div>
+          <div className="basis-2/7 w-full flex justify-center">
+            <Image src={intro.image === "" ? profile_picture : intro.image} alt={`${intro.name} profile picture`} />
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 
-const Introduction = ({ sections, onEditClick, onAddClick, isLoggedIn }) => {
-  const schema = {
-    id: "",
-    title: "",
-    paragraphs: ["",]
-  }
-
-  return (
-    <div className='relative'>
-      <Title />
-      {sections.map(section =>
-        <div key={section.title + "_div"} className='relative'>
-          <Section key={section.title} title={section.title} paragraphs={section.paragraphs} />
-          {isLoggedIn ? <EditButton key={section.title + "_editButton"} onClick={() => onEditClick(section)} /> : <></> }
-        </div>
-      )}
-      {isLoggedIn ? <AddButton onClick={() => onAddClick(schema)} /> : <></> }
-    </div>
-  )
-}
-
-export { Introduction };
+export { Introduction }

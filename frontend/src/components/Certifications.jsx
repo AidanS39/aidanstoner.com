@@ -1,29 +1,25 @@
-import { Subtitle, Header, SubHeader, Paragraph } from './Content'
+import { Image, SectionTitle, IconButton } from './Utilities'
 
-const Certification = ({ certification }) => {
+const Certifications = ({ certs }) => {
   return (
-    <div className='flex py-2 items-center'>
-      <div>
-        <a href={certification.link}><img src={certification.image} href={certification.link} className='pr-2 cursor-pointer h-[168px] min-w-[184px] transition ease-in-out hover:drop-shadow-green-glow-lg hover:scale-105' /></a>
+    <section className="w-full px-12 py-16">
+      <div className="max-w-7xl mx-auto space-y-12">
+        <div>
+          <SectionTitle title="Certifications" />
+        </div>
+        <div className="flex gap-32 overflow-x-auto snap-x snap-mandatory px-2 py-4 scrollbar-thin scrollbar-thumb-slate-400 scrollbar-track-slate-100 dark:scrollbar-thumb-slate-600 dark:scrollbar-track-slate-800">
+          {certs.map((cert, i) => (
+            <div key={i} className="flex-none snap-center w-72">
+                <IconButton 
+                  icon={cert.icon} 
+                  alt={cert.alt} 
+                  link={cert.link} />
+            </div>
+          ))}
+        </div>
       </div>
-      <div>
-        <Header title={certification.name} />
-        <SubHeader title={certification.issuedBy} />
-        <Paragraph text={`Issued ${certification.issueDate} • Expires ${certification.expirationDate}`} />
-      </div>
-    </div>
+    </section>
   )
 }
 
-const Certifications = ({ certifications }) => {
-  return (
-    <div>
-      <Subtitle title="Certifications" />
-      {certifications.map(certification => 
-        <Certification key={certification.id} certification={certification} />
-      )}
-    </div>
-  )
-}
-
-export { Certifications };
+export { Certifications }

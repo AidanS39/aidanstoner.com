@@ -1,0 +1,13 @@
+### @getCertifications
+GET http://localhost:3001/api/certifications
+Accept: application/json
+
+### @createCertification
+POST http://localhost:3001/api/certifications
+Content-Type: application/json
+
+{
+    "icon": "testIcon",
+    "alt": "testAlt",
+    "link": "testLink"
+}

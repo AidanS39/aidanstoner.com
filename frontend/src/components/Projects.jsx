@@ -1,46 +1,29 @@
-import { Subtitle, LinkHeader, SubHeader, Paragraph, Pill } from './Content'
-
-const Project = ({ project }) => {
-  let image = (
-    <>
-    </>
-  )
-  if (project.image) {
-    image = (
-      <div className='content-center grow basis-1/2'>
-        <img className='drop-shadow-3xl' src={project.image} />
-      </div>
-    )
-  }
-  
-  return (
-    <div className='flex gap-2 flex-wrap lg:flex-nowrap'>
-      <div className='grow basis-1/2 flex-initial flex flex-wrap flex-col'>
-        <LinkHeader title={project.name} link={project.link} />
-        <SubHeader title={project.shortDescription} />
-        {project.description.map(paragraph => 
-          <Paragraph key={paragraph} text={paragraph} />
-        )}
-        <div className='flex flex-wrap gap-4 py-4'>
-          {project.toolsUsed.map(tool => 
-            <Pill key={tool} text={tool} />
-          )}
-        </div>
-      </div>
-      {image}
-    </div>
-  )
-}
+import { SectionTitle, Card } from './Utilities'
+import placeholder_image from '../assets/placeholder_image.png'
 
 const Projects = ({ projects }) => {
   return (
-    <div>
-      <Subtitle title="Projects" />
-      {projects.map(project =>
-        <Project key={project.id} project={project} />
-      )}
-    </div>
+    <section className="w-full px-12 py-16">
+      <div className="max-w-7xl mx-auto space-y-12">
+        <div>
+          <SectionTitle title="Projects" />
+        </div>
+        <div className="flex gap-32 overflow-x-auto snap-x snap-mandatory px-2 py-4 scrollbar-thin scrollbar-thumb-slate-400 scrollbar-track-slate-100 dark:scrollbar-thumb-slate-600 dark:scrollbar-track-slate-800">
+          {projects.map((project, i) => (
+            <div key={i} className="flex-none snap-center w-72">
+              <Card
+                image={project.image === "" ? placeholder_image: project.image }
+                title={project.title}
+                text={project.text}
+                link={project.link}
+                linkTitle={project.linkTitle}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   )
 }
 
-export { Projects };
+export { Projects }

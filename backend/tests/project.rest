@@ -1,0 +1,15 @@
+### @getProjects
+GET http://localhost:3001/api/projects
+Accept: application/json
+
+### @createProject
+POST http://localhost:3001/api/projects
+Content-Type: application/json
+
+{
+    "image": "",
+    "title": "testTitle",
+    "text": "testText",
+    "link": "testLink",
+    "linkTitle": "testLinkTitle"
+}
