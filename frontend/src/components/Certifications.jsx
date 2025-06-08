@@ -1,5 +1,4 @@
 import { Image, SectionTitle, IconButton } from './Utilities'
-import aws_ccp_icon from '../assets/aws_ccp_icon.png'
 
 const Certifications = ({ certs }) => {
   return (

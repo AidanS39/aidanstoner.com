@@ -3,10 +3,11 @@ require('dotenv').config()
 const express = require("express")
 const cors = require("cors")
 
+const introduction = require('./introduction.json')
+
 // Models
 const Project = require('./models/project')
 const Certification = require('./models/certification')
-const certification = require('./models/certification')
 const { Error } = require('mongoose')
 
 const app = express()
@@ -33,7 +34,8 @@ app.delete('/', (request, response) => {
 
 // Introduction
 app.get('/api/introduction', (request, response) => {
-    response.send("hi! intro")
+    
+    response.status(200).json(introduction)
 })
 
 // Projects
