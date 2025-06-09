@@ -23,7 +23,7 @@ const SubHeading = ({ heading }) => (
 )
 
 const Paragraph = ({ text }) => (
-  <p className="text-md leading-relaxed text-slate-700 dark:text-slate-300">
+  <p className="text-md leading-relaxed text-slate-700 whitespace-pre-line dark:text-slate-300">
     {text}
   </p>
 )
