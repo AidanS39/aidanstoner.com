@@ -54,13 +54,13 @@ const CardImage = ({ src, alt = '' }) => (
 )
 
 const CardTitle = ({ title }) => (
-  <h4 className="text-xl font-semibold text-slate-900 dark:text-white tracking-wide">
+  <h4 className="text-xl font-semibold text-white tracking-wide">
     {title}
   </h4>
 )
 
 const CardParagraph = ({ text }) => (
-  <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+  <p className="text-base text-white leading-relaxed">
     {text}
   </p>
 )
