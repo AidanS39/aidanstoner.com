@@ -1,8 +1,8 @@
 import axios from 'axios'
-const baseURL = "http://localhost:3001/api"
+const baseURL = "/api/certifications"
 
 const getCerts = () => {
-    const request = axios.get(`${baseURL}/certifications`)
+    const request = axios.get(`${baseURL}`)
     return request.then(response => response.data)
 }
 

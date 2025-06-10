@@ -1,8 +1,8 @@
 import axios from 'axios'
-const baseURL = "http://localhost:3001/api"
+const baseURL = "/api/introduction"
 
 const getIntroduction = () => {
-    const request = axios.get(`${baseURL}/introduction`)
+    const request = axios.get(`${baseURL}`)
     return request.then(response => response.data)
 }
 

@@ -1,29 +1,29 @@
 const PageTitle = ({ title }) => (
-  <h1 className="text-6xl font-thin tracking-tight text-slate-900 dark:text-white">
+  <h1 className="text-6xl font-thin tracking-tight text-white">
     {title}
   </h1>
 )
 
 const SectionTitle = ({ title }) => (
-  <h2 className="text-4xl font-thin tracking-wide text-slate-800 dark:text-slate-200">
+  <h2 className="text-4xl font-thin tracking-wide text-white">
     {title}
   </h2>
 )
 
 const Heading = ({ heading }) => (
-  <h3 className="text-2xl font-normal tracking-wide text-slate-700 dark:text-slate-300">
+  <h3 className="text-2xl font-normal tracking-wide text-white">
     {heading}
   </h3>
 )
 
 const SubHeading = ({ heading }) => (
-  <h4 className="text-xl font-normal tracking-wide text-slate-600 dark:text-slate-400">
+  <h4 className="text-xl font-normal tracking-wide text-white">
     {heading}
   </h4>
 )
 
 const Paragraph = ({ text }) => (
-  <p className="text-md leading-relaxed text-slate-700 whitespace-pre-line dark:text-slate-300">
+  <p className="text-md leading-relaxed text-white whitespace-pre-line">
     {text}
   </p>
 )
