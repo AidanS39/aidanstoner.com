@@ -8,10 +8,14 @@ import { Certifications } from './components/Certifications'
 import { Contact } from './components/Contact'
 import { Orbs } from './components/BackgroundEffects'
 
-// Services
-import IntroductionService from './services/IntroductionService'
-import ProjectService from './services/ProjectService'
-import CertService from './services/CertificationService'
+// Services (Not used for static version)
+// import IntroductionService from './services/IntroductionService'
+// import ProjectService from './services/ProjectService'
+// import CertService from './services/CertificationService'
+
+import introductionData from './data/introduction.json'
+import projectsData from './data/projects.json'
+import certificationsData from './data/certifications.json'
 
 const App = () => {
   const [intro, setIntro]         = useState({})
@@ -19,12 +23,9 @@ const App = () => {
   const [certs, setCerts]         = useState([])
 
 useEffect(() => {
-  IntroductionService.getIntroduction()
-    .then(data => setIntro(data))
-  ProjectService.getProjects()
-    .then(data => setProjects(data))
-  CertService.getCerts()
-    .then(data => setCerts(data))
+  setIntro(introductionData)
+  setProjects(projectsData)
+  setCerts(certificationsData)
 }, [])
 
   return (

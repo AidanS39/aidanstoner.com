@@ -5,10 +5,11 @@
 
 @theme {
     --font-libre: "Libre Franklin", "sans-serif";
+    --font-sans-serif: "sans-serif"
 }
 
 html, body, #root {
-  @apply text-white font-thin font-libre scrollbar-track-slate-900 scrollbar-thumb-slate-300;
+  @apply text-white font-thin font-serif scrollbar-track-slate-900 scrollbar-thumb-slate-300;
 }
 
 @layer base {

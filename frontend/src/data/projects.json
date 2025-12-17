@@ -1,0 +1,51 @@
+[
+    {
+        "image":"/musicnlp.png",
+        "title":"Natural Lyrics Processing",
+        "text":"Natural Language Processing Applied to Music",
+        "link":"https://github.com/AidanS39/music-nlp",
+        "linkTitle":"View project on GitHub"
+    },
+    {
+        "image": "/packtbotd.png",
+        "title": "PacktBOTD",
+        "text": "Serverless Notification Application for Packt's Book of the Day using AWS Resources and Python.",
+        "link": "https://github.com/AidanS39/PacktBOTD",
+        "linkTitle": "View project on GitHub"
+    },
+    {
+        "image":"/personalwebsite.png",
+        "title":"aidanstoner.com",
+        "text":"Self-hosted Personal Website.",
+        "link":"https://github.com/AidanS39/aidanstoner.com",
+        "linkTitle":"View project on GitHub"
+    },
+    {
+        "image":"/authorattribution.png",
+        "title":"Authorship Attribution",
+        "text":"Using N-Grams and Classification to rank likely authors based on writing style.",
+        "link":"https://github.com/AidanS39/csc427_project3",
+        "linkTitle":"View project on GitHub"
+    },
+    {
+        "image":"/lmshowcase.png",
+        "title":"LM Showcase",
+        "text":"Exploring how machines learn to generate language using N-Gram models and perplexity",
+        "link":"https://github.com/AidanS39/csc427_project2",
+        "linkTitle":"View project on GitHub"
+    },
+    {
+        "image":"/socketchatroom.png",
+        "title":"C-Socket Chatroom",
+        "text":"Shell-based Chatroom built in C with glibc sockets.",
+        "link":"https://github.com/AidanS39/network_programming",
+        "linkTitle":"View project on GitHub"
+    },
+    {
+        "image":"/languagerecognizer.png",
+        "title":"RegEx Language Recognizer",
+        "text":"D-Recognize algorithm built in Python to recognize the language of text based on FSAs.",
+        "link":"https://github.com/AidanS39/csc427_project1",
+        "linkTitle":"View project on GitHub"
+    }
+]
