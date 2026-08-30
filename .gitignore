@@ -128,3 +128,13 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Eleventy build output
+_site/
+
+# Node dependencies
+node_modules/
+
+# OS metadata files
+.DS_Store
+Thumbs.db

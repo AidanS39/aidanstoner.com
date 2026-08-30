@@ -1,0 +1,12 @@
+<div class="section-container">
+  <h2>certifications</h2>
+  {% for certification in certifications %}
+    <div class="cert-container">
+      <a class="logo" href={{ certification.url }}><img src={{ certification.logo_url }} /></a>
+      <div>
+        <h3>{{ certification.name }}</h3>
+        <h5><i>issued {{ certification.date_issued }}</i></h5>
+      </div>
+    </div>
+  {% endfor %}
+</div>

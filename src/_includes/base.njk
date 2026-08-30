@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <title>{{ title }}</title>
+</head>
+<body>
+  <svg style="display: none;">
+    <filter id="text-noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </svg>
+  <main>
+      {% include "components/intro.njk" %}
+      {% include "components/experience.njk" %}
+      {% include "components/projects.njk" %}
+      {% include "components/certifications.njk" %}
+  </main>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "aidanstoner.com",
+  "version": "1.0.0",
+  "description": "[aidanstoner.com](https://aidanstoner.com) is my personal website where I can list my projects, experience, certifications, etc. It acts as an online resume where I can show my skills both from the information on each page, as well as from the website itself. This is a more long-term project - the initial website is up and running and I plan to keep it that way, but I also plan to continue building upon this page as time goes on.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AidanS39/aidanstoner.com.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/AidanS39/aidanstoner.com/issues"
+  },
+  "homepage": "https://github.com/AidanS39/aidanstoner.com#readme",
+  "dependencies": {
+    "@11ty/eleventy": "^3.1.6"
+  }
+}

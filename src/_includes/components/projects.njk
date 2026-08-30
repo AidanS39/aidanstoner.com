@@ -1,0 +1,17 @@
+<div class="section-container">
+  <h2>projects</h2>
+  {% for project in projects %}
+    <div class="item">
+      {% if project.logo_url %}
+        <a href={{ project.url }}><img class="project-logo" src={{ project.logo_url }} /></a>
+      {% else %}
+        <h3><a href={{ project.url }}>{{ project.name }}</a></h3>
+      {% endif %}
+      <h5><i>{{ project.tagline }}</i></h5>
+      <p>{{ project.description }}</p>
+      <p>started {{ project.date_started }}</p>
+    </div>
+  {% endfor %}
+  <h4>and more... visit my <a href={{ github_url }}><b>github<b></a></h4>
+</div>
+
